@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import themeColor from '../config/themeColor';
+import { alignItems, justifyContent } from '../utils/style/styleUtils';
 
 const PasswordToggleIcon = ({ isVisible, onClick }) => (
     <span 
@@ -8,7 +9,6 @@ const PasswordToggleIcon = ({ isVisible, onClick }) => (
             position: 'absolute',
             right: '10px',
             top: '50%',
-            transform: 'translateY(-50%)',
             cursor: 'pointer',
         }}
         onClick={onClick}
@@ -39,21 +39,24 @@ function TextInput({
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const inputStyle = {
-        width: width || '100%',
-        height: height || 'inherit',
+        width: '-webkit-fill-available',
+        height: '-webkit-fill-available',
         fontSize: '16px',
-        border: `${borderWidth} ${borderStyle} ${borderColor}`,
-        borderRadius,
         outline: 'none',
-        transition: 'border-color 0.3s ease',
         backgroundColor,
-        padding: padding || '10px',
+        border: 'none',
         cursor: disabled ? 'not-allowed' : 'text',
         opacity: disabled ? 0.6 : 1,
     };
 
     const inputContainerStyle = {
         position: 'relative',
+        display: 'flex',
+        justifyContent: 'end',
+        alignItems: 'center',
+        border: `${borderWidth} ${borderStyle} ${borderColor}`,
+        borderRadius,
+        transition: 'border-color 0.3s ease',
         width,
         height,
         margin,
@@ -88,8 +91,7 @@ function TextInput({
 TextInput.defaultProps = {
     placeholder: 'Input text...',
     width: '100%',
-    height: '30px',
-    padding: '10px',
+    padding: '15px',
     borderRadius: '4px',
     borderWidth: '1px',
     borderStyle: 'solid',

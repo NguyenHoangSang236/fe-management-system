@@ -32,19 +32,17 @@ function LoginPage() {
                 value={states.username}
                 onChange={(e) => setStates({ username: e.target.value })}
                 width="100%"
-                height="50px"
                 margin='20px 0px'
-                borderRadius={'10px'} 
+                borderRadius='10px'
             />
             <TextInput
                 placeholder="Enter your password here"
                 value={states.password}
                 onChange={(e) => setStates({ password: e.target.value })}
                 width="100%"
-                height="50px"
                 margin='20px 0px'
                 isPassword={true}
-                borderRadius={'10px'} 
+                borderRadius='10px'
             />
             <Button
                 label="Login"
