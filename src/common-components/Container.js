@@ -5,6 +5,8 @@ import { justifyContent, alignItems, shadow } from '../utils/style/styleUtils';
 
 function Container({ 
 	backgroundColor, 
+	backgroundFit,
+	backgroundImage,
 	children, 
 	width, 
 	height, 
@@ -21,6 +23,10 @@ function Container({
 }) {
 	const style = {
 		backgroundColor: backgroundColor, 
+		backgroundImage: backgroundImage ? `url(${process.env.PUBLIC_URL}/${backgroundImage})` : 'none',
+		backgroundSize: backgroundFit,
+		backgroundPosition: 'center',
+		backgroundRepeat: 'no-repeat',
 		display: 'flex',
 		flexDirection: flexDirection,
 		justifyContent: justifyContent(horizontalAlignment),
@@ -40,10 +46,10 @@ function Container({
 	return <div style={style}>{children}</div>;
 }
 
-// Định nghĩa defaultProps
 Container.defaultProps = {
 	backgroundColor: themeColor.background,
 	width: 'auto',
+	backgroundFit: 'cover',
 	height: 'auto',
 	padding: '0',
 	margin: '0',
@@ -53,13 +59,19 @@ Container.defaultProps = {
 	borderColor: 'transparent',
 	horizontalAlignment: HorizontalAlignment.LEFT,
 	verticalAlignment: VerticalAlignment.TOP,
-	boxShadow: shadow({
-		offsetX:'10px', 
-		offsetY:'10px', 
-		blurRadius:'10px', 
-		spreadRadius:'20px'
-	}),
+	boxShadow: 'none',
 	flexDirection: FlexDirection.COLUMN
 };
 
 export default Container;
+
+
+
+// SAMPLE codes
+
+// boxShadow: shadow({
+// 	offsetX:'10px', 
+// 	offsetY:'10px', 
+// 	blurRadius:'10px', 
+// 	spreadRadius:'20px',
+// }),

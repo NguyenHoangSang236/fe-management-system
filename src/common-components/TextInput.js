@@ -6,9 +6,6 @@ import { alignItems, justifyContent } from '../utils/style/styleUtils';
 const PasswordToggleIcon = ({ isVisible, onClick }) => (
     <span 
         style={{
-            position: 'absolute',
-            right: '10px',
-            top: '50%',
             cursor: 'pointer',
         }}
         onClick={onClick}
@@ -21,6 +18,8 @@ const PasswordToggleIcon = ({ isVisible, onClick }) => (
 
 function TextInput({ 
     placeholder, 
+    label,
+    fontSize,
     value, 
     onChange, 
     width, 
@@ -38,10 +37,19 @@ function TextInput({
 }) {
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
+    const containerStyle = {
+        width,
+        margin,
+    };
+
+    const labelStyle = {
+        fontSize: '13px'
+    }
+
     const inputStyle = {
         width: '-webkit-fill-available',
         height: '-webkit-fill-available',
-        fontSize: '16px',
+        fontSize,
         outline: 'none',
         backgroundColor,
         border: 'none',
@@ -57,10 +65,9 @@ function TextInput({
         border: `${borderWidth} ${borderStyle} ${borderColor}`,
         borderRadius,
         transition: 'border-color 0.3s ease',
-        width,
         height,
-        margin,
         padding,
+        margin: '10px 0px 0px 0px'
     };
 
     const togglePasswordVisibility = () => {
@@ -68,23 +75,29 @@ function TextInput({
     };
 
     return (
-        <div style={inputContainerStyle}>
-            {loading && <span>Loading...</span>}
-            <input
-                type={isPassword && !isPasswordVisible ? 'password' : 'text'}
-                placeholder={placeholder}
-                value={value}
-                onChange={onChange}
-                style={inputStyle}
-                disabled={disabled}
-            />
-            {isPassword && (
-                <PasswordToggleIcon 
-                    isVisible={isPasswordVisible} 
-                    onClick={togglePasswordVisibility} 
+        <div style={containerStyle}>
+            <div style={labelStyle}>
+                {label}
+            </div>
+            <div style={inputContainerStyle}>
+                {loading && <span>Loading...</span>}
+                <input
+                    type={isPassword && !isPasswordVisible ? 'password' : 'text'}
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={onChange}
+                    style={inputStyle}
+                    disabled={disabled}
                 />
-            )}
+                {isPassword && (
+                    <PasswordToggleIcon 
+                        isVisible={isPasswordVisible} 
+                        onClick={togglePasswordVisibility} 
+                    />
+                )}
+            </div>
         </div>
+        
     );
 }
 
@@ -101,6 +114,7 @@ TextInput.defaultProps = {
     isPassword: false,
     disabled: false,
     loading: false,
+    fontSize: '16px',
 };
 
 TextInput.propTypes = {
