@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import themeColor from '../config/themeColor';
-import { alignItems, justifyContent } from '../utils/style/styleUtils';
 import styled from "styled-components";
 
-const PasswordToggleIcon = ({ isVisible, onClick }) => (
+const PasswordToggleButton = ({ isVisible, onClick }) => (
     <span
         style={{
             cursor: 'pointer',
@@ -16,6 +15,8 @@ const PasswordToggleIcon = ({ isVisible, onClick }) => (
         {isVisible ? '👁️' : '🙈'}
     </span>
 );
+
+TextInput.PasswordToggleButton = PasswordToggleButton;
 
 const PasswordInput = styled.input`
   &::-ms-reveal,
@@ -99,7 +100,7 @@ function TextInput({
                             style={inputStyle}
                             disabled={disabled}
                         />
-                        <PasswordToggleIcon
+                        <TextInput.PasswordToggleButton
                             isVisible={isPasswordVisible}
                             onClick={togglePasswordVisibility}
                         />

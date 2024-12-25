@@ -6,8 +6,7 @@ import Button from '../../common-components/Button';
 import themeColor from '../../config/themeColor';
 import Container from '../../common-components/Container';
 import i18n from "./i18n";
-import { HorizontalAlignment, VerticalAlignment } from '../../config/alignment';
-import I18n from "./i18n";
+import {FlexDirection, HorizontalAlignment, VerticalAlignment} from '../../config/alignment';
 
 function LoginPage() {
     const [states, setStates] = useStates({
@@ -25,6 +24,13 @@ function LoginPage() {
     const handleForgotPassword = useCallback(
         () => {
             alert('Forgot password');
+        },
+        []
+    );
+
+    const handleRegister = useCallback(
+        () => {
+            alert('Register');
         },
         []
     );
@@ -70,6 +76,9 @@ function LoginPage() {
                 />
                 <Container
                     width='100%'
+                    horizontalAlignment={HorizontalAlignment.SPACE_BETWEEN}
+                    verticalAlignment={VerticalAlignment.CENTER}
+                    flexDirection={FlexDirection.ROW}
                 >
                     <Text
                         text={i18n.BUTTON.LABEL.FORGOT_PASSWORD}
@@ -77,6 +86,12 @@ function LoginPage() {
                         fontWeight='bold'
                         textDecoration='underline'
                         onClick={handleForgotPassword}
+                    />
+                    <Text
+                        text={i18n.BUTTON.LABEL.REGISTER}
+                        fontSize='14px'
+                        fontStyle='italic'
+                        onClick={handleRegister}
                     />
                 </Container>
                 <Button

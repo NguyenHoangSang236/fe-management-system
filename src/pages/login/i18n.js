@@ -4,6 +4,7 @@ export default {
         LABEL: {
             FORGOT_PASSWORD: 'Forgot password',
             LOGIN: 'Login',
+            REGISTER: 'Sign up for a new account',
         }
     },
     TEXT_INPUT: {

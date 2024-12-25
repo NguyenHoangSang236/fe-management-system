@@ -1,7 +1,7 @@
 import { HorizontalAlignment, VerticalAlignment } from "../../config/alignment";
 import themeColor from "../../config/themeColor";
 
-export const shadow = ({ 
+export const shadow = ({
     offsetX = "0px",
     offsetY = "4px",
     blurRadius = "10px",
@@ -14,8 +14,11 @@ export const shadow = ({
 export const justifyContent = (alignment) => {
     const alignmentMap = {
         [HorizontalAlignment.LEFT]: 'flex-start',
-        [HorizontalAlignment.CENTER]: 'center',
+        [HorizontalAlignment.CENTER]: HorizontalAlignment.CENTER,
         [HorizontalAlignment.RIGHT]: 'flex-end',
+        [HorizontalAlignment.SPACE_BETWEEN]: HorizontalAlignment.SPACE_BETWEEN,
+        [HorizontalAlignment.SPACE_AROUND]: HorizontalAlignment.SPACE_AROUND,
+        [HorizontalAlignment.SPACE_EVENLY]: HorizontalAlignment.SPACE_EVENLY,
     };
 
     return alignmentMap[alignment] || 'flex-start';
@@ -24,7 +27,7 @@ export const justifyContent = (alignment) => {
 export const alignItems = (alignment) => {
     const alignmentMap = {
         [VerticalAlignment.TOP]: 'flex-start',
-        [VerticalAlignment.CENTER]: 'center',
+        [VerticalAlignment.CENTER]: VerticalAlignment.CENTER,
         [VerticalAlignment.BOTTOM]: 'flex-end',
     };
 
