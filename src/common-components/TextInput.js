@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import themeColor from '../config/themeColor';
 import { alignItems, justifyContent } from '../utils/style/styleUtils';
+import styled from "styled-components";
 
 const PasswordToggleIcon = ({ isVisible, onClick }) => (
-    <span 
+    <span
         style={{
             cursor: 'pointer',
         }}
@@ -16,18 +17,25 @@ const PasswordToggleIcon = ({ isVisible, onClick }) => (
     </span>
 );
 
-function TextInput({ 
-    placeholder, 
+const PasswordInput = styled.input`
+  &::-ms-reveal,
+  &::-ms-clear {
+    display: none;
+  }
+`;
+
+function TextInput({
+    placeholder,
     label,
     fontSize,
-    value, 
-    onChange, 
-    width, 
-    height, 
-    padding, 
-    borderRadius, 
-    borderWidth, 
-    borderStyle, 
+    value,
+    onChange,
+    width,
+    height,
+    padding,
+    borderRadius,
+    borderWidth,
+    borderStyle,
     borderColor,
     margin,
     backgroundColor,
@@ -81,23 +89,33 @@ function TextInput({
             </div>
             <div style={inputContainerStyle}>
                 {loading && <span>Loading...</span>}
-                <input
-                    type={isPassword && !isPasswordVisible ? 'password' : 'text'}
-                    placeholder={placeholder}
-                    value={value}
-                    onChange={onChange}
-                    style={inputStyle}
-                    disabled={disabled}
-                />
-                {isPassword && (
-                    <PasswordToggleIcon 
-                        isVisible={isPasswordVisible} 
-                        onClick={togglePasswordVisibility} 
+                {isPassword ? (
+                    <>
+                        <PasswordInput
+                            type={isPasswordVisible ? 'text' : 'password'}
+                            placeholder={placeholder}
+                            value={value}
+                            onChange={onChange}
+                            style={inputStyle}
+                            disabled={disabled}
+                        />
+                        <PasswordToggleIcon
+                            isVisible={isPasswordVisible}
+                            onClick={togglePasswordVisibility}
+                        />
+                    </>
+                ) : (
+                    <input
+                        type="text"
+                        placeholder={placeholder}
+                        value={value}
+                        onChange={onChange}
+                        style={inputStyle}
+                        disabled={disabled}
                     />
                 )}
             </div>
         </div>
-        
     );
 }
 

@@ -5,7 +5,9 @@ import useStates from '../../utils/hooks/useStates';
 import Button from '../../common-components/Button';
 import themeColor from '../../config/themeColor';
 import Container from '../../common-components/Container';
+import i18n from "./i18n";
 import { HorizontalAlignment, VerticalAlignment } from '../../config/alignment';
+import I18n from "./i18n";
 
 function LoginPage() {
     const [states, setStates] = useStates({
@@ -43,13 +45,13 @@ function LoginPage() {
                 borderRadius='20px'
             >
                 <Text
-                    text='Log in'
+                    text={i18n.TITLE}
                     fontSize='30px'
                     fontWeight='bold'
                 />
                 <TextInput
-                    placeholder="Enter your username here"
-                    label='Username'
+                    placeholder={i18n.TEXT_INPUT.USERNAME.PLACEHOLDER}
+                    label={i18n.TEXT_INPUT.USERNAME.LABEL}
                     value={states.username}
                     onChange={(e) => setStates({ username: e.target.value })}
                     width='100%'
@@ -57,8 +59,8 @@ function LoginPage() {
                     borderRadius='10px'
                 />
                 <TextInput
-                    placeholder="Enter your password here"
-                    label='Password'
+                    placeholder={i18n.TEXT_INPUT.PASSWORD.PLACEHOLDER}
+                    label={i18n.TEXT_INPUT.PASSWORD.LABEL}
                     value={states.password}
                     onChange={(e) => setStates({ password: e.target.value })}
                     width='100%'
@@ -70,7 +72,7 @@ function LoginPage() {
                     width='100%'
                 >
                     <Text
-                        text='Forgot password'
+                        text={i18n.BUTTON.LABEL.FORGOT_PASSWORD}
                         fontSize='14px'
                         fontWeight='bold'
                         textDecoration='underline'
@@ -78,8 +80,8 @@ function LoginPage() {
                     />
                 </Container>
                 <Button
-                    label='Login'
-                    onClick={handleLogin} 
+                    label={i18n.BUTTON.LABEL.LOGIN}
+                    onClick={handleLogin}
                     width='100px'
                     borderColor={themeColor.textPrimary}
                     margin='30px 0px 0px 0px'
