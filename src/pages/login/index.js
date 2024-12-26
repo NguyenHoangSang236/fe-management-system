@@ -7,12 +7,16 @@ import themeColor from '../../config/themeColor';
 import Container from '../../common-components/Container';
 import i18n from "./i18n";
 import {FlexDirection, HorizontalAlignment, VerticalAlignment} from '../../config/alignment';
+import {useNavigate} from "react-router-dom";
+import routeName from "../../config/routeName";
 
 function LoginPage() {
     const [states, setStates] = useStates({
         username: '',
         password: '',
     });
+
+    const navigate = useNavigate();
 
     const handleLogin = useCallback(
         () => {
@@ -30,7 +34,7 @@ function LoginPage() {
 
     const handleRegister = useCallback(
         () => {
-            alert('Register');
+            navigate(routeName.REGISTER_PAGE);
         },
         []
     );
